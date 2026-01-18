@@ -125,3 +125,27 @@ The fine-tuned GRU model achieves the best overall performance across all evalua
 - **Beijing PM2.5 Dataset (UCI Machine Learning Repository)**  
   Primary data source containing hourly PM2.5 measurements and meteorological features.  
   [https://archive.ics.uci.edu/dataset/381/beijing+pm2+5+data](https://archive.ics.uci.edu/dataset/381/beijing+pm2+5+data)
+
+  - **Learning Long-Term Dependencies with Gradient Descent (LSTM)**  
+  Foundational paper introducing LSTM for sequence modeling.  
+  [https://www.bioinf.jku.at/publications/older/2604.pdf](https://www.bioinf.jku.at/publications/older/2604.pdf)
+
+- **Empirical Evaluation of Gated Recurrent Neural Networks on Sequence Modeling**  
+  Introduces and motivates GRUs as a simpler alternative to LSTMs.  
+  [https://arxiv.org/abs/1412.3555](https://arxiv.org/abs/1412.3555)
+
+- **A Review of Deep Learning Techniques for Air Quality Forecasting**  
+  Survey covering RNN, LSTM, and GRU models applied to pollution prediction.  
+  [https://www.sciencedirect.com/science/article/pii/S1364032119305202](https://www.sciencedirect.com/science/article/pii/S1364032119305202)
+
+- **PM2.5 Concentration Forecasting Using GRU Networks**  
+  Demonstrates GRU effectiveness for short-term PM2.5 prediction.  
+  [https://ieeexplore.ieee.org/document/8468312](https://ieeexplore.ieee.org/document/8468312)
+
+- **Time Series Forecasting with Recurrent Neural Networks**  
+  Practical discussion of RNN-based forecasting and evaluation metrics such as RMSE and MAE.  
+  [https://arxiv.org/abs/1703.07015](https://arxiv.org/abs/1703.07015)
+
+- **On the Use of Huber Loss for Robust Regression**  
+  Motivates the use of Huber loss in noisy real-world regression tasks.  
+  [https://ieeexplore.ieee.org/document/726791](https://ieeexplore.ieee.org/document/726791)
