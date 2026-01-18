@@ -38,11 +38,87 @@ Based on these results, the GRU architecture achieved the lowest prediction erro
 
 ## 5. Fine-Tuning GRU
 
-Fine-tuning focuses on adjusting key hyperparameters, including the hidden state size, number of recurrent layers, learning rate, and regularization strength. By systematically refining these settings while keeping the data and evaluation protocol fixed, we aim to enhance predictive accuracy without increasing model complexity unnecessarily. The resulting tuned GRU serves as the final forecasting model for near-term PM2.5 prediction.
+
+After identifying the GRU as the best-performing recurrent architecture, we further improved its predictive capability through targeted fine-tuning. Rather than increasing model complexity arbitrarily, fine-tuning focused on stabilizing training, improving generalization, and capturing both short- and medium-term temporal dependencies in PM2.5 data.
+
+---
+
+## Model Architecture
+
+The fine-tuned GRU model consists of two stacked GRU layers followed by fully connected layers:
+
+- **First GRU layer (96 units)**  
+  This layer captures longer temporal dependencies by processing the full input sequence (`return_sequences=True`). It learns broad pollution trends influenced by historical patterns and time-based features.
+
+- **Second GRU layer (48 units)**  
+  This layer focuses on refining the temporal representation produced by the first GRU, emphasizing more localized and recent changes in PM2.5 levels.
+
+Both GRU layers use the `tanh` activation function, which is well-suited for sequence modeling and helps maintain stable gradients over time.
+
+---
+
+## Regularization and Stabilization
+
+To reduce overfitting and improve training stability, multiple regularization techniques are applied:
+
+- **L2 regularization** on both kernel and recurrent weights penalizes overly complex temporal patterns.
+- **Layer Normalization** is applied after each GRU layer to stabilize hidden state dynamics and improve convergence.
+- **Dropout** is progressively applied with decreasing rates (0.35 → 0.30 → 0.25), encouraging robustness without overly suppressing useful signals.
+
+These choices help the model generalize better to unseen data while remaining compact.
+
+---
+
+## Dense Layers and Output
+
+Following the recurrent layers:
+- A fully connected layer with 32 units and ReLU activation learns higher-level interactions between temporal features.
+- The final dense layer outputs a single continuous value representing the predicted PM2.5 concentration.
+
+---
+
+## Optimization Strategy
+
+The model is trained using the **Adam optimizer** with a learning rate of `3 × 10⁻⁴`, providing a balance between convergence speed and stability. Gradient clipping (`clipnorm=1.0`) is used to prevent exploding gradients, which can occur in recurrent networks.
+
+---
+
+## Loss Function
+
+We use the **Huber loss** with `δ = 1.0`, which combines the advantages of mean squared error and mean absolute error:
+- Penalizes large errors smoothly
+- Is more robust to outliers commonly present in environmental data
+
+The model is evaluated using Mean Absolute Error (MAE) for interpretability in real-world PM2.5 units.
+
+---
+
+## Summary
+
+This fine-tuned GRU model improves upon the baseline by:
+- Leveraging deeper temporal representations
+- Applying structured regularization and normalization
+- Using a robust optimization and loss strategy
+
+These refinements result in lower prediction error and improved directional accuracy, thereby making the model more reliable for near-term air quality forecasting.
 
 
 
-## 6. References
+## 6. Final Results
+
+| Model           | Test RMSE (PM2.5) | Test MAE (PM2.5) | Directional Accuracy (%) |
+|-----------------|------------------:|-----------------:|--------------------------:|
+| Simple RNN      | 60.99             | 46.44            | 54.97                     |
+| LSTM            | 62.75             | 46.33            | 54.97                     |
+| GRU             | 58.86             | 44.93            | 54.97                     |
+| **GRU (Fine-Tuned)** | **56.56**     | **40.05**        | **57.15**                 |
+
+**Lower RMSE and MAE indicate better predictive accuracy, while higher directional accuracy reflects improved trend prediction.**  
+The fine-tuned GRU model achieves the best overall performance across all evaluation metrics.
+
+![time-series](timeseriesgru.png)
+
+## 7. References
 
 - **Beijing PM2.5 Dataset (UCI Machine Learning Repository)**  
   Primary data source containing hourly PM2.5 measurements and meteorological features.  
