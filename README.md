@@ -87,11 +87,13 @@ The model is trained using the **Adam optimizer** with a learning rate of `3 × 
 
 We use the **Huber loss** with `δ = 1.0`, which combines the advantages of mean squared error and mean absolute error:
 - Penalizes large errors smoothly
-- Is more robust to outliers commonly present in environmental data
+- It is more robust to outliers commonly present in environmental data
 
 The model is evaluated using Mean Absolute Error (MAE) for interpretability in real-world PM2.5 units.
 
 ---
+
+![modelarch](grumodelarch.png)
 
 ## Summary
 
