@@ -126,7 +126,7 @@ The fine-tuned GRU model achieves the best overall performance across all evalua
   Primary data source containing hourly PM2.5 measurements and meteorological features.  
   [https://archive.ics.uci.edu/dataset/381/beijing+pm2+5+data](https://archive.ics.uci.edu/dataset/381/beijing+pm2+5+data)
 
-  - **Learning Long-Term Dependencies with Gradient Descent (LSTM)**  
+- **Learning Long-Term Dependencies with Gradient Descent (LSTM)**  
   Foundational paper introducing LSTM for sequence modeling.  
   [https://www.bioinf.jku.at/publications/older/2604.pdf](https://www.bioinf.jku.at/publications/older/2604.pdf)
 
