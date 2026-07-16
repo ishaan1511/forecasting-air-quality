@@ -89,7 +89,7 @@ We use the **Huber loss** with `δ = 1.0`, which combines the advantages of mean
 - Penalizes large errors smoothly
 - It is more robust to outliers commonly present in environmental data
 
-The model is evaluated using Mean Absolute Error (MAE) for interpretability in real-world PM2.5 units.
+The model is evaluated using Mean Absolute Error for interpretability in real-world PM2.5 units.
 
 ---
 
